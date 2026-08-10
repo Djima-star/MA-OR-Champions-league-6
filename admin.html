@@ -2,16 +2,22 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Administration - MA'OR Champions League</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="css/style.css">
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -19,28 +25,50 @@
 
     <p>Administration du tournoi</p>
 
+
     <nav>
-        <a href="index.html">Accueil</a>
-        <a href="matchs.html">⚽ Matchs</a>
-        <a href="classement.html">🏆 Classement</a>
-        <a href="equipes.html">👥 Équipes</a>
-        <a href="admin.html">🔐 Admin</a>
+
+        <a href="index.html">
+            Accueil
+        </a>
+
+        <a href="matchs.html">
+            ⚽ Matchs
+        </a>
+
+        <a href="classement.html">
+            🏆 Classement
+        </a>
+
+        <a href="equipes.html">
+            👥 Équipes
+        </a>
+
+        <a href="admin.html">
+            🔐 Admin
+        </a>
+
     </nav>
 
 </header>
 
 
+
 <main class="container">
+
 
     <h2>🔐 Administration</h2>
 
     <br>
 
+
     <div class="team">
 
-        <h3>Ajouter un résultat</h3>
+
+        <h3>⚽ Enregistrer un résultat</h3>
 
         <br>
+
 
         <label>
             Équipe domicile
@@ -48,9 +76,12 @@
 
         <br>
 
+
         <select id="homeTeam"></select>
 
+
         <br><br>
+
 
 
         <label>
@@ -59,6 +90,7 @@
 
         <br>
 
+
         <input
             type="number"
             id="homeScore"
@@ -66,7 +98,9 @@
             value="0"
         >
 
+
         <br><br>
+
 
 
         <label>
@@ -75,9 +109,12 @@
 
         <br>
 
+
         <select id="awayTeam"></select>
 
+
         <br><br>
+
 
 
         <label>
@@ -86,6 +123,7 @@
 
         <br>
 
+
         <input
             type="number"
             id="awayScore"
@@ -93,7 +131,9 @@
             value="0"
         >
 
+
         <br><br>
+
 
 
         <label>
@@ -102,23 +142,35 @@
 
         <br>
 
+
         <input
             type="datetime-local"
             id="matchDate"
         >
 
+
         <br><br>
 
 
-        <button onclick="saveMatch()">
-            ⚽ Enregistrer le résultat
+
+        <button id="saveMatch">
+
+            ⚽ ENREGISTRER LE MATCH
+
         </button>
+
+
+        <br><br>
+
 
         <p id="message"></p>
 
+
     </div>
 
+
 </main>
+
 
 
 <footer>
@@ -128,55 +180,161 @@
 </footer>
 
 
-<script src="js/data.js"></script>
 
-<script>
-
-    const homeTeam =
-        document.getElementById("homeTeam");
-
-    const awayTeam =
-        document.getElementById("awayTeam");
+<script type="module">
 
 
-    TEAMS.forEach(team => {
+import {
 
-        const option1 =
-            document.createElement("option");
+    database,
+    ref,
+    push,
+    set
 
-        option1.value = team;
-        option1.textContent = team;
+}
 
-        homeTeam.appendChild(option1);
-
-
-        const option2 =
-            document.createElement("option");
-
-        option2.value = team;
-        option2.textContent = team;
-
-        awayTeam.appendChild(option2);
-
-    });
+from "./js/firebase.js";
 
 
-    function saveMatch() {
 
-        const home = homeTeam.value;
-
-        const away = awayTeam.value;
-
-        const homeScore =
-            document.getElementById("homeScore").value;
-
-        const awayScore =
-            document.getElementById("awayScore").value;
+const homeTeam =
+    document.getElementById("homeTeam");
 
 
-        const message =
-            document.getElementById("message");
+const awayTeam =
+    document.getElementById("awayTeam");
 
+
+
+const homeScore =
+    document.getElementById("homeScore");
+
+
+const awayScore =
+    document.getElementById("awayScore");
+
+
+const matchDate =
+    document.getElementById("matchDate");
+
+
+const message =
+    document.getElementById("message");
+
+
+
+/*
+    Liste des 15 équipes
+*/
+
+const TEAMS = [
+
+    "MA'OR FC",
+
+    "Ichokan FC",
+
+    "Koussoukpa FC",
+
+    "New King FC",
+
+    "Club Olympique FC",
+
+    "Providence FC",
+
+    "AS Police FC",
+
+    "Ayetedjou FC",
+
+    "Agadjaligbo FC",
+
+    "Club Les Amis FC",
+
+    "Sport Foot FC",
+
+    "Réveil FC",
+
+    "Hlagba Zakpo FC",
+
+    "Zalimey FC",
+
+    "Zougame FC"
+
+];
+
+
+
+/*
+    Ajouter les équipes
+    dans les menus
+*/
+
+TEAMS.forEach(team => {
+
+
+    const optionHome =
+        document.createElement("option");
+
+
+    optionHome.value = team;
+
+
+    optionHome.textContent = team;
+
+
+    homeTeam.appendChild(optionHome);
+
+
+
+    const optionAway =
+        document.createElement("option");
+
+
+    optionAway.value = team;
+
+
+    optionAway.textContent = team;
+
+
+    awayTeam.appendChild(optionAway);
+
+
+});
+
+
+
+/*
+    Enregistrer le match
+*/
+
+document
+    .getElementById("saveMatch")
+    .addEventListener("click", async () => {
+
+
+        const home =
+            homeTeam.value;
+
+
+        const away =
+            awayTeam.value;
+
+
+        const scoreHome =
+            Number(homeScore.value);
+
+
+        const scoreAway =
+            Number(awayScore.value);
+
+
+        const date =
+            matchDate.value;
+
+
+
+        /*
+            Vérification
+        */
 
         if (home === away) {
 
@@ -188,12 +346,96 @@
         }
 
 
-        message.textContent =
-            "✅ Le résultat est prêt. Firebase sera connecté ensuite.";
 
-    }
+        if (
+            scoreHome < 0 ||
+            scoreAway < 0
+        ) {
+
+            message.textContent =
+                "❌ Le score est invalide.";
+
+            return;
+
+        }
+
+
+
+        try {
+
+
+            /*
+                Référence Firebase
+            */
+
+            const matchesRef =
+                ref(database, "matches");
+
+
+            /*
+                Créer un nouvel ID
+            */
+
+            const newMatch =
+                push(matchesRef);
+
+
+            /*
+                Enregistrer le match
+            */
+
+            await set(newMatch, {
+
+                homeTeam: home,
+
+                awayTeam: away,
+
+                homeScore: scoreHome,
+
+                awayScore: scoreAway,
+
+                date: date,
+
+                status: "termine",
+
+                createdAt:
+                    new Date().toISOString()
+
+            });
+
+
+
+            message.textContent =
+                "✅ Match enregistré avec succès dans Firebase !";
+
+
+            /*
+                Réinitialiser les scores
+            */
+
+            homeScore.value = 0;
+
+            awayScore.value = 0;
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(error);
+
+
+            message.textContent =
+                "❌ Erreur lors de l'enregistrement.";
+
+        }
+
+    });
+
 
 </script>
+
 
 </body>
 
