@@ -39,9 +39,18 @@
         .admin-box button {
             width: 100%;
             margin-top: 25px;
-            padding: 14px;
-            font-size: 16px;
+            padding: 16px;
+            font-size: 17px;
             font-weight: bold;
+            background: #1675e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .admin-box button:hover {
+            background: #0f5fbe;
         }
 
         #message {
@@ -51,7 +60,6 @@
         }
     </style>
 </head>
-
 
 <body>
 
@@ -78,7 +86,7 @@
 
     <div class="admin-box">
 
-        <h3>⚽ Enregistrer un match</h3>
+        <h3>⚽ Enregistrer un résultat</h3>
 
 
         <!-- CLUB DOMICILE -->
@@ -93,21 +101,21 @@
                 -- Choisir le club domicile --
             </option>
 
-            <option>MA'OR FC</option>
-            <option>Ichokan FC</option>
-            <option>Koussoukpa FC</option>
-            <option>New King FC</option>
-            <option>Club Olympique FC</option>
-            <option>Providence FC</option>
-            <option>AS Police FC</option>
-            <option>Ayetedjou FC</option>
-            <option>Agadjaligbo FC</option>
-            <option>Club Les Amis FC</option>
-            <option>Sport Foot FC</option>
-            <option>Réveil FC</option>
-            <option>Hlagba Zakpo FC</option>
-            <option>Zalimey FC</option>
-            <option>Zougame FC</option>
+            <option value="MA'OR FC">MA'OR FC</option>
+            <option value="Ichokan FC">Ichokan FC</option>
+            <option value="Koussoukpa FC">Koussoukpa FC</option>
+            <option value="New King FC">New King FC</option>
+            <option value="Club Olympique FC">Club Olympique FC</option>
+            <option value="Providence FC">Providence FC</option>
+            <option value="AS Police FC">AS Police FC</option>
+            <option value="Ayetedjou FC">Ayetedjou FC</option>
+            <option value="Agadjaligbo FC">Agadjaligbo FC</option>
+            <option value="Club Les Amis FC">Club Les Amis FC</option>
+            <option value="Sport Foot FC">Sport Foot FC</option>
+            <option value="Réveil FC">Réveil FC</option>
+            <option value="Hlagba Zakpo FC">Hlagba Zakpo FC</option>
+            <option value="Zalimey FC">Zalimey FC</option>
+            <option value="Zougame FC">Zougame FC</option>
 
         </select>
 
@@ -138,17 +146,201 @@
                 -- Choisir le club extérieur --
             </option>
 
-            <option>MA'OR FC</option>
-            <option>Ichokan FC</option>
-            <option>Koussoukpa FC</option>
-            <option>New King FC</option>
-            <option>Club Olympique FC</option>
-            <option>Providence FC</option>
-            <option>AS Police FC</option>
-            <option>Ayetedjou FC</option>
-            <option>Agadjaligbo FC</option>
-            <option>Club Les Amis FC</option>
-            <option>Sport Foot FC</option>
-            <option>Réveil FC</option>
-            <option>Hlagba Zakpo FC</option>
-            <option>Z
+            <option value="MA'OR FC">MA'OR FC</option>
+            <option value="Ichokan FC">Ichokan FC</option>
+            <option value="Koussoukpa FC">Koussoukpa FC</option>
+            <option value="New King FC">New King FC</option>
+            <option value="Club Olympique FC">Club Olympique FC</option>
+            <option value="Providence FC">Providence FC</option>
+            <option value="AS Police FC">AS Police FC</option>
+            <option value="Ayetedjou FC">Ayetedjou FC</option>
+            <option value="Agadjaligbo FC">Agadjaligbo FC</option>
+            <option value="Club Les Amis FC">Club Les Amis FC</option>
+            <option value="Sport Foot FC">Sport Foot FC</option>
+            <option value="Réveil FC">Réveil FC</option>
+            <option value="Hlagba Zakpo FC">Hlagba Zakpo FC</option>
+            <option value="Zalimey FC">Zalimey FC</option>
+            <option value="Zougame FC">Zougame FC</option>
+
+        </select>
+
+
+        <!-- SCORE EXTÉRIEUR -->
+
+        <label for="awayScore">
+            ⚽ Score extérieur
+        </label>
+
+        <input
+            type="number"
+            id="awayScore"
+            min="0"
+            value="0"
+        >
+
+
+        <!-- DATE -->
+
+        <label for="matchDate">
+            📅 Date du match
+        </label>
+
+        <input
+            type="datetime-local"
+            id="matchDate"
+        >
+
+
+        <!-- BOUTON ENREGISTRER -->
+
+        <button id="saveMatch">
+            ⚽ ENREGISTRER LE MATCH
+        </button>
+
+
+        <p id="message"></p>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    © 2026 MA'OR Champions League
+
+</footer>
+
+
+<script type="module">
+
+    import {
+        database,
+        ref,
+        push,
+        set
+    } from "./js/firebase.js";
+
+
+    const saveButton =
+        document.getElementById("saveMatch");
+
+
+    saveButton.addEventListener("click", async function () {
+
+        const homeTeam =
+            document.getElementById("homeTeam").value;
+
+        const awayTeam =
+            document.getElementById("awayTeam").value;
+
+        const homeScore =
+            Number(document.getElementById("homeScore").value);
+
+        const awayScore =
+            Number(document.getElementById("awayScore").value);
+
+        const matchDate =
+            document.getElementById("matchDate").value;
+
+        const message =
+            document.getElementById("message");
+
+
+        // Vérifier les clubs
+
+        if (homeTeam === "") {
+
+            message.textContent =
+                "❌ Choisissez le club domicile.";
+
+            return;
+        }
+
+
+        if (awayTeam === "") {
+
+            message.textContent =
+                "❌ Choisissez le club extérieur.";
+
+            return;
+        }
+
+
+        // Vérifier les équipes
+
+        if (homeTeam === awayTeam) {
+
+            message.textContent =
+                "❌ Les deux clubs doivent être différents.";
+
+            return;
+        }
+
+
+        // Vérifier les scores
+
+        if (homeScore < 0 || awayScore < 0) {
+
+            message.textContent =
+                "❌ Le score est invalide.";
+
+            return;
+        }
+
+
+        try {
+
+            const matchesRef =
+                ref(database, "matches");
+
+
+            const newMatch =
+                push(matchesRef);
+
+
+            await set(newMatch, {
+
+                homeTeam: homeTeam,
+
+                awayTeam: awayTeam,
+
+                homeScore: homeScore,
+
+                awayScore: awayScore,
+
+                date: matchDate,
+
+                status: "termine",
+
+                createdAt:
+                    new Date().toISOString()
+
+            });
+
+
+            message.textContent =
+                "✅ MATCH ENREGISTRÉ AVEC SUCCÈS !";
+
+
+            document.getElementById("homeScore").value = 0;
+
+            document.getElementById("awayScore").value = 0;
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            message.textContent =
+                "❌ Erreur Firebase : " + error.message;
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>
