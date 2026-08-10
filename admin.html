@@ -2,22 +2,58 @@
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>Admin - MA'OR Champions League</title>
 
-    <title>Administration - MA'OR Champions League</title>
+    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet"
-          href="css/style.css">
+    <style>
+        .admin-box {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #0c1d31;
+            padding: 25px;
+            border-radius: 15px;
+        }
 
+        .admin-box label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .admin-box select,
+        .admin-box input {
+            width: 100%;
+            padding: 13px;
+            border-radius: 8px;
+            border: 1px solid #35536f;
+            background: #102b45;
+            color: white;
+            font-size: 16px;
+        }
+
+        .admin-box button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 
 <body>
-
 
 <header>
 
@@ -25,71 +61,62 @@
 
     <p>Administration du tournoi</p>
 
-
     <nav>
-
-        <a href="index.html">
-            Accueil
-        </a>
-
-        <a href="matchs.html">
-            ⚽ Matchs
-        </a>
-
-        <a href="classement.html">
-            🏆 Classement
-        </a>
-
-        <a href="equipes.html">
-            👥 Équipes
-        </a>
-
-        <a href="admin.html">
-            🔐 Admin
-        </a>
-
+        <a href="index.html">Accueil</a>
+        <a href="matchs.html">⚽ Matchs</a>
+        <a href="classement.html">🏆 Classement</a>
+        <a href="equipes.html">👥 Équipes</a>
+        <a href="admin.html">🔐 Admin</a>
     </nav>
 
 </header>
 
 
-
 <main class="container">
-
 
     <h2>🔐 Administration</h2>
 
-    <br>
+    <div class="admin-box">
+
+        <h3>⚽ Enregistrer un match</h3>
 
 
-    <div class="team">
+        <!-- CLUB DOMICILE -->
 
-
-        <h3>⚽ Enregistrer un résultat</h3>
-
-        <br>
-
-
-        <label>
-            Équipe domicile
+        <label for="homeTeam">
+            🏠 Club domicile
         </label>
 
-        <br>
+        <select id="homeTeam">
+
+            <option value="">
+                -- Choisir le club domicile --
+            </option>
+
+            <option>MA'OR FC</option>
+            <option>Ichokan FC</option>
+            <option>Koussoukpa FC</option>
+            <option>New King FC</option>
+            <option>Club Olympique FC</option>
+            <option>Providence FC</option>
+            <option>AS Police FC</option>
+            <option>Ayetedjou FC</option>
+            <option>Agadjaligbo FC</option>
+            <option>Club Les Amis FC</option>
+            <option>Sport Foot FC</option>
+            <option>Réveil FC</option>
+            <option>Hlagba Zakpo FC</option>
+            <option>Zalimey FC</option>
+            <option>Zougame FC</option>
+
+        </select>
 
 
-        <select id="homeTeam"></select>
+        <!-- SCORE DOMICILE -->
 
-
-        <br><br>
-
-
-
-        <label>
-            Score domicile
+        <label for="homeScore">
+            ⚽ Score domicile
         </label>
-
-        <br>
-
 
         <input
             type="number"
@@ -99,344 +126,29 @@
         >
 
 
-        <br><br>
+        <!-- CLUB EXTÉRIEUR -->
 
-
-
-        <label>
-            Équipe extérieure
+        <label for="awayTeam">
+            ✈️ Club extérieur
         </label>
 
-        <br>
-
-
-        <select id="awayTeam"></select>
-
-
-        <br><br>
-
-
-
-        <label>
-            Score extérieur
-        </label>
-
-        <br>
-
-
-        <input
-            type="number"
-            id="awayScore"
-            min="0"
-            value="0"
-        >
-
-
-        <br><br>
-
-
-
-        <label>
-            Date du match
-        </label>
-
-        <br>
-
-
-        <input
-            type="datetime-local"
-            id="matchDate"
-        >
-
-
-        <br><br>
-
-
-
-        <button id="saveMatch">
-
-            ⚽ ENREGISTRER LE MATCH
-
-        </button>
-
-
-        <br><br>
-
-
-        <p id="message"></p>
-
-
-    </div>
-
-
-</main>
-
-
-
-<footer>
-
-    © 2026 MA'OR Champions League
-
-</footer>
-
-
-
-<script type="module">
-
-
-import {
-
-    database,
-    ref,
-    push,
-    set
-
-}
-
-from "./js/firebase.js";
-
-
-
-const homeTeam =
-    document.getElementById("homeTeam");
-
-
-const awayTeam =
-    document.getElementById("awayTeam");
-
-
-
-const homeScore =
-    document.getElementById("homeScore");
-
-
-const awayScore =
-    document.getElementById("awayScore");
-
-
-const matchDate =
-    document.getElementById("matchDate");
-
-
-const message =
-    document.getElementById("message");
-
-
-
-/*
-    Liste des 15 équipes
-*/
-
-const TEAMS = [
-
-    "MA'OR FC",
-
-    "Ichokan FC",
-
-    "Koussoukpa FC",
-
-    "New King FC",
-
-    "Club Olympique FC",
-
-    "Providence FC",
-
-    "AS Police FC",
-
-    "Ayetedjou FC",
-
-    "Agadjaligbo FC",
-
-    "Club Les Amis FC",
-
-    "Sport Foot FC",
-
-    "Réveil FC",
-
-    "Hlagba Zakpo FC",
-
-    "Zalimey FC",
-
-    "Zougame FC"
-
-];
-
-
-
-/*
-    Ajouter les équipes
-    dans les menus
-*/
-
-TEAMS.forEach(team => {
-
-
-    const optionHome =
-        document.createElement("option");
-
-
-    optionHome.value = team;
-
-
-    optionHome.textContent = team;
-
-
-    homeTeam.appendChild(optionHome);
-
-
-
-    const optionAway =
-        document.createElement("option");
-
-
-    optionAway.value = team;
-
-
-    optionAway.textContent = team;
-
-
-    awayTeam.appendChild(optionAway);
-
-
-});
-
-
-
-/*
-    Enregistrer le match
-*/
-
-document
-    .getElementById("saveMatch")
-    .addEventListener("click", async () => {
-
-
-        const home =
-            homeTeam.value;
-
-
-        const away =
-            awayTeam.value;
-
-
-        const scoreHome =
-            Number(homeScore.value);
-
-
-        const scoreAway =
-            Number(awayScore.value);
-
-
-        const date =
-            matchDate.value;
-
-
-
-        /*
-            Vérification
-        */
-
-        if (home === away) {
-
-            message.textContent =
-                "❌ Les deux équipes doivent être différentes.";
-
-            return;
-
-        }
-
-
-
-        if (
-            scoreHome < 0 ||
-            scoreAway < 0
-        ) {
-
-            message.textContent =
-                "❌ Le score est invalide.";
-
-            return;
-
-        }
-
-
-
-        try {
-
-
-            /*
-                Référence Firebase
-            */
-
-            const matchesRef =
-                ref(database, "matches");
-
-
-            /*
-                Créer un nouvel ID
-            */
-
-            const newMatch =
-                push(matchesRef);
-
-
-            /*
-                Enregistrer le match
-            */
-
-            await set(newMatch, {
-
-                homeTeam: home,
-
-                awayTeam: away,
-
-                homeScore: scoreHome,
-
-                awayScore: scoreAway,
-
-                date: date,
-
-                status: "termine",
-
-                createdAt:
-                    new Date().toISOString()
-
-            });
-
-
-
-            message.textContent =
-                "✅ Match enregistré avec succès dans Firebase !";
-
-
-            /*
-                Réinitialiser les scores
-            */
-
-            homeScore.value = 0;
-
-            awayScore.value = 0;
-
-
-        }
-
-        catch (error) {
-
-
-            console.error(error);
-
-
-            message.textContent =
-                "❌ Erreur lors de l'enregistrement.";
-
-        }
-
-    });
-
-
-</script>
-
-
-</body>
-
-</html>
+        <select id="awayTeam">
+
+            <option value="">
+                -- Choisir le club extérieur --
+            </option>
+
+            <option>MA'OR FC</option>
+            <option>Ichokan FC</option>
+            <option>Koussoukpa FC</option>
+            <option>New King FC</option>
+            <option>Club Olympique FC</option>
+            <option>Providence FC</option>
+            <option>AS Police FC</option>
+            <option>Ayetedjou FC</option>
+            <option>Agadjaligbo FC</option>
+            <option>Club Les Amis FC</option>
+            <option>Sport Foot FC</option>
+            <option>Réveil FC</option>
+            <option>Hlagba Zakpo FC</option>
+            <option>Z
