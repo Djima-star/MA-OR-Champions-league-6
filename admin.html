@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administration - MA'OR Champions League</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🏆 MA'OR CHAMPIONS LEAGUE</h1>
+
+    <p>Administration du tournoi</p>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="matchs.html">⚽ Matchs</a>
+        <a href="classement.html">🏆 Classement</a>
+        <a href="equipes.html">👥 Équipes</a>
+        <a href="admin.html">🔐 Admin</a>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <h2>🔐 Administration</h2>
+
+    <br>
+
+    <div class="team">
+
+        <h3>Ajouter un résultat</h3>
+
+        <br>
+
+        <label>
+            Équipe domicile
+        </label>
+
+        <br>
+
+        <select id="homeTeam"></select>
+
+        <br><br>
+
+
+        <label>
+            Score domicile
+        </label>
+
+        <br>
+
+        <input
+            type="number"
+            id="homeScore"
+            min="0"
+            value="0"
+        >
+
+        <br><br>
+
+
+        <label>
+            Équipe extérieure
+        </label>
+
+        <br>
+
+        <select id="awayTeam"></select>
+
+        <br><br>
+
+
+        <label>
+            Score extérieur
+        </label>
+
+        <br>
+
+        <input
+            type="number"
+            id="awayScore"
+            min="0"
+            value="0"
+        >
+
+        <br><br>
+
+
+        <label>
+            Date du match
+        </label>
+
+        <br>
+
+        <input
+            type="datetime-local"
+            id="matchDate"
+        >
+
+        <br><br>
+
+
+        <button onclick="saveMatch()">
+            ⚽ Enregistrer le résultat
+        </button>
+
+        <p id="message"></p>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    © 2026 MA'OR Champions League
+
+</footer>
+
+
+<script src="js/data.js"></script>
+
+<script>
+
+    const homeTeam =
+        document.getElementById("homeTeam");
+
+    const awayTeam =
+        document.getElementById("awayTeam");
+
+
+    TEAMS.forEach(team => {
+
+        const option1 =
+            document.createElement("option");
+
+        option1.value = team;
+        option1.textContent = team;
+
+        homeTeam.appendChild(option1);
+
+
+        const option2 =
+            document.createElement("option");
+
+        option2.value = team;
+        option2.textContent = team;
+
+        awayTeam.appendChild(option2);
+
+    });
+
+
+    function saveMatch() {
+
+        const home = homeTeam.value;
+
+        const away = awayTeam.value;
+
+        const homeScore =
+            document.getElementById("homeScore").value;
+
+        const awayScore =
+            document.getElementById("awayScore").value;
+
+
+        const message =
+            document.getElementById("message");
+
+
+        if (home === away) {
+
+            message.textContent =
+                "❌ Les deux équipes doivent être différentes.";
+
+            return;
+
+        }
+
+
+        message.textContent =
+            "✅ Le résultat est prêt. Firebase sera connecté ensuite.";
+
+    }
+
+</script>
+
+</body>
+
+</html>
