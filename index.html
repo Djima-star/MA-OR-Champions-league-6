@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MA'OR Champions League</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #06101d;
+            color: white;
+        }
+
+        header {
+            background: #0b1b2e;
+            padding: 18px;
+            text-align: center;
+            border-bottom: 2px solid #173b60;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header p {
+            color: #8fb4d8;
+            margin-top: 5px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 5px;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: #174b7a;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero .trophy {
+            font-size: 70px;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin: 15px 0;
+        }
+
+        .hero strong {
+            color: #2d8cff;
+        }
+
+        .hero p {
+            color: #a8bfd6;
+            font-size: 18px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            background: #1675e8;
+            color: white;
+            text-decoration: none;
+            padding: 13px 20px;
+            margin: 6px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .buttons a:hover {
+            background: #0f5fbe;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px 60px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .teams {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .team {
+            background: #0c1d31;
+            border: 1px solid #1c3b59;
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .team span {
+            display: block;
+            color: #4da0ff;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #7892aa;
+            border-top: 1px solid #1c3b59;
+        }
+
+        @media (max-width: 700px) {
+            .teams {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>🏆 MA'OR CHAMPIONS LEAGUE</h1>
+
+    <p>Saison 2026</p>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="#">⚽ Matchs</a>
+        <a href="#">🏆 Classement</a>
+        <a href="#">👥 Équipes</a>
+        <a href="#">🔐 Admin</a>
+    </nav>
+
+</header>
+
+
+<main>
+
+    <div class="hero">
+
+        <div class="trophy">🏆</div>
+
+        <h2>
+            MA'OR
+            <strong>CHAMPIONS LEAGUE</strong>
+        </h2>
+
+        <p>
+            Un rêve • Un terrain • Un trophée
+        </p>
+
+        <div class="buttons">
+
+            <a href="#">⚽ Voir les matchs</a>
+
+            <a href="#">🏆 Voir le classement</a>
+
+        </div>
+
+    </div>
+
+
+    <section>
+
+        <h2>⚽ Les 15 équipes participantes</h2>
+
+        <div class="teams">
+
+            <div class="team">
+                <span>01</span>
+                MA'OR FC
+            </div>
+
+            <div class="team">
+                <span>02</span>
+                Ichokan FC
+            </div>
+
+            <div class="team">
+                <span>03</span>
+                Koussoukpa FC
+            </div>
+
+            <div class="team">
+                <span>04</span>
+                New King FC
+            </div>
+
+            <div class="team">
+                <span>05</span>
+                Club Olympique FC
+            </div>
+
+            <div class="team">
+                <span>06</span>
+                Providence FC
+            </div>
+
+            <div class="team">
+                <span>07</span>
+                AS Police FC
+            </div>
+
+            <div class="team">
+                <span>08</span>
+                Ayetedjou FC
+            </div>
+
+            <div class="team">
+                <span>09</span>
+                Agadjaligbo FC
+            </div>
+
+            <div class="team">
+                <span>10</span>
+                Club Les Amis FC
+            </div>
+
+            <div class="team">
+                <span>11</span>
+                Sport Foot FC
+            </div>
+
+            <div class="team">
+                <span>12</span>
+                Réveil FC
+            </div>
+
+            <div class="team">
+                <span>13</span>
+                Hlagba Zakpo FC
+            </div>
+
+            <div class="team">
+                <span>14</span>
+                Zalimey FC
+            </div>
+
+            <div class="team">
+                <span>15</span>
+                Zougame FC
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    © 2026 MA'OR Champions League
+
+</footer>
+
+</body>
+              </html>
