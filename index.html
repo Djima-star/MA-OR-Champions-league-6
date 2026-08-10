@@ -1,289 +1,1017 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MA'OR Champions League</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="MA'OR Champions League 2026 - Tournoi de football avec 15 équipes"
+    >
+
+    <title>
+        MA'OR Champions League 2026
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #06101d;
-            color: white;
-        }
-
-        header {
-            background: #0b1b2e;
-            padding: 18px;
-            text-align: center;
-            border-bottom: 2px solid #173b60;
-        }
-
-        header h1 {
-            font-size: 24px;
-        }
-
-        header p {
-            color: #8fb4d8;
-            margin-top: 5px;
-        }
-
-        nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 5px;
-            padding: 8px 12px;
-            display: inline-block;
-            border-radius: 8px;
-        }
-
-        nav a:hover {
-            background: #174b7a;
-        }
+        /* =========================
+           ACCUEIL
+        ========================= */
 
         .hero {
+
+            min-height: 520px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
             text-align: center;
-            padding: 70px 20px;
+
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(2, 12, 25, 0.82),
+                    rgba(2, 12, 25, 0.92)
+                );
+
         }
 
-        .hero .trophy {
-            font-size: 70px;
+
+        .hero-content {
+
+            max-width: 850px;
+
         }
+
+
+        .hero-trophy {
+
+            font-size: 80px;
+
+            margin-bottom: 15px;
+
+        }
+
 
         .hero h2 {
-            font-size: 42px;
-            margin: 15px 0;
+
+            font-size: 48px;
+
+            margin: 0;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
         }
 
-        .hero strong {
-            color: #2d8cff;
-        }
 
-        .hero p {
-            color: #a8bfd6;
-            font-size: 18px;
-        }
+        .hero h2 span {
 
-        .buttons {
-            margin-top: 30px;
-        }
-
-        .buttons a {
-            display: inline-block;
-            background: #1675e8;
-            color: white;
-            text-decoration: none;
-            padding: 13px 20px;
-            margin: 6px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        .buttons a:hover {
-            background: #0f5fbe;
-        }
-
-        section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 30px 20px 60px;
-        }
-
-        section h2 {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .teams {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .team {
-            background: #0c1d31;
-            border: 1px solid #1c3b59;
-            padding: 18px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .team span {
             display: block;
-            color: #4da0ff;
-            font-size: 14px;
-            margin-bottom: 8px;
+
+            color: #1688ff;
+
+            font-size: 32px;
+
+            margin-top: 10px;
+
         }
 
-        footer {
-            text-align: center;
+
+        .hero-season {
+
+            font-size: 22px;
+
+            margin-top: 20px;
+
+            font-weight: bold;
+
+        }
+
+
+        .hero-description {
+
+            max-width: 650px;
+
+            margin: 20px auto;
+
+            line-height: 1.7;
+
+            color: #cbd8e5;
+
+        }
+
+
+        .hero-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 30px;
+
+        }
+
+
+        .hero-button {
+
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            background: #1675e8;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        .hero-button.secondary {
+
+            background: #18364f;
+
+        }
+
+
+        .hero-button:hover {
+
+            opacity: 0.85;
+
+        }
+
+
+        /* =========================
+           STATISTIQUES
+        ========================= */
+
+        .stats {
+
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .stat-card {
+
+            background: #0c1d31;
+
             padding: 25px;
-            color: #7892aa;
-            border-top: 1px solid #1c3b59;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            border: 1px solid #1e3c57;
+
         }
 
-        @media (max-width: 700px) {
-            .teams {
-                grid-template-columns: 1fr;
+
+        .stat-icon {
+
+            font-size: 40px;
+
+        }
+
+
+        .stat-number {
+
+            font-size: 32px;
+
+            font-weight: 900;
+
+            margin: 10px 0;
+
+            color: #1688ff;
+
+        }
+
+
+        .stat-title {
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .home-section {
+
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        .home-section-title {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .home-section-title span {
+
+            color: #1688ff;
+
+        }
+
+
+        /* =========================
+           ÉQUIPES
+        ========================= */
+
+        .teams-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+        }
+
+
+        .team-card {
+
+            background: #0c1d31;
+
+            border: 1px solid #1e3c57;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .team-card:hover {
+
+            transform: translateY(-3px);
+
+            border-color: #1688ff;
+
+        }
+
+
+        .team-number {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #1688ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .team-ball {
+
+            font-size: 25px;
+
+        }
+
+
+        .team-name {
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           À PROPOS
+        ========================= */
+
+        .about {
+
+            max-width: 850px;
+
+            margin: 60px auto;
+
+            padding: 0 20px;
+
+            text-align: center;
+
+        }
+
+
+        .about-box {
+
+            background: #0c1d31;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            line-height: 1.8;
+
+            border: 1px solid #1e3c57;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .stats {
+
+                grid-template-columns:
+                    1fr;
+
             }
+
+
+            .teams-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
 
             .hero h2 {
-                font-size: 32px;
+
+                font-size: 36px;
+
             }
+
+
+            .hero h2 span {
+
+                font-size: 25px;
+
+            }
+
         }
+
+
+        @media (max-width: 500px) {
+
+            .teams-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .hero {
+
+                min-height: 450px;
+
+            }
+
+
+            .hero-trophy {
+
+                font-size: 60px;
+
+            }
+
+
+            .hero h2 {
+
+                font-size: 30px;
+
+            }
+
+
+            .hero h2 span {
+
+                font-size: 21px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-    <h1>🏆 MA'OR CHAMPIONS LEAGUE</h1>
+    <div class="logo">
 
-    <p>Saison 2026</p>
+        🏆 MA'OR
+
+    </div>
+
+
+    <h1>
+
+        MA'OR CHAMPIONS LEAGUE
+
+    </h1>
+
+
+    <p>
+
+        UN RÊVE • UN TERRAIN • UN TROPHÉE
+
+    </p>
+
 
     <nav>
-    <nav>
-    <a href="index.html">Accueil</a>
-    <a href="matchs.html">⚽ Matchs</a>
-    <a href="classement.html">🏆 Classement</a>
-    <a href="equipes.html">👥 Équipes</a>
-    <a href="admin.html">🔐 Admin</a>
+
+        <a href="index.html">
+
+            🏠 Accueil
+
+        </a>
+
+
+        <a href="matchs.html">
+
+            ⚽ Matchs
+
+        </a>
+
+
+        <a href="classement.html">
+
+            🏆 Classement
+
+        </a>
+
+
+        <a href="equipes.html">
+
+            👥 Équipes
+
+        </a>
+
+
+        <a href="admin.html">
+
+            🔐 Admin
+
+        </a>
+
     </nav>
 
 </header>
 
 
-<main>
 
-    <div class="hero">
+<!-- =========================
+     HERO
+========================= -->
 
-        <div class="trophy">🏆</div>
+<section class="hero">
+
+
+    <div class="hero-content">
+
+
+        <div class="hero-trophy">
+
+            🏆
+
+        </div>
+
 
         <h2>
+
             MA'OR
-            <strong>CHAMPIONS LEAGUE</strong>
+
+            <span>
+
+                CHAMPIONS LEAGUE
+
+            </span>
+
         </h2>
 
-        <p>
-            Un rêve • Un terrain • Un trophée
+
+        <div class="hero-season">
+
+            SAISON 2026
+
+        </div>
+
+
+        <p class="hero-description">
+
+            Bienvenue sur la plateforme officielle
+            de la MA'OR Champions League.
+
+            <br>
+
+            Suivez les matchs, les résultats,
+            les équipes et le classement
+            de la compétition.
+
         </p>
 
-        <div class="buttons">
 
-            <a href="#">⚽ Voir les matchs</a>
+        <div class="hero-buttons">
 
-            <a href="#">🏆 Voir le classement</a>
+
+            <a
+                href="matchs.html"
+                class="hero-button"
+            >
+
+                ⚽ VOIR LES MATCHS
+
+            </a>
+
+
+            <a
+                href="classement.html"
+                class="hero-button secondary"
+            >
+
+                🏆 VOIR LE CLASSEMENT
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     STATISTIQUES
+========================= -->
+
+<section class="stats">
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            👥
+
+        </div>
+
+
+        <div class="stat-number">
+
+            15
+
+        </div>
+
+
+        <div class="stat-title">
+
+            ÉQUIPES
 
         </div>
 
     </div>
 
 
-    <section>
 
-        <h2>⚽ Les 15 équipes participantes</h2>
+    <div class="stat-card">
 
-        <div class="teams">
+        <div class="stat-icon">
 
-            <div class="team">
-                <span>01</span>
-                MA'OR FC
-            </div>
-
-            <div class="team">
-                <span>02</span>
-                Ichokan FC
-            </div>
-
-            <div class="team">
-                <span>03</span>
-                Koussoukpa FC
-            </div>
-
-            <div class="team">
-                <span>04</span>
-                New King FC
-            </div>
-
-            <div class="team">
-                <span>05</span>
-                Club Olympique FC
-            </div>
-
-            <div class="team">
-                <span>06</span>
-                Providence FC
-            </div>
-
-            <div class="team">
-                <span>07</span>
-                AS Police FC
-            </div>
-
-            <div class="team">
-                <span>08</span>
-                Ayetedjou FC
-            </div>
-
-            <div class="team">
-                <span>09</span>
-                Agadjaligbo FC
-            </div>
-
-            <div class="team">
-                <span>10</span>
-                Club Les Amis FC
-            </div>
-
-            <div class="team">
-                <span>11</span>
-                Sport Foot FC
-            </div>
-
-            <div class="team">
-                <span>12</span>
-                Réveil FC
-            </div>
-
-            <div class="team">
-                <span>13</span>
-                Hlagba Zakpo FC
-            </div>
-
-            <div class="team">
-                <span>14</span>
-                Zalimey FC
-            </div>
-
-            <div class="team">
-                <span>15</span>
-                Zougame FC
-            </div>
+            ⚽
 
         </div>
 
-    </section>
 
-</main>
+        <div
+            class="stat-number"
+            id="matchCount"
+        >
 
+            0
+
+        </div>
+
+
+        <div class="stat-title">
+
+            MATCHS ENREGISTRÉS
+
+        </div>
+
+    </div>
+
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            🏆
+
+        </div>
+
+
+        <div class="stat-number">
+
+            1
+
+        </div>
+
+
+        <div class="stat-title">
+
+            TROPHÉE
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     LES 15 ÉQUIPES
+========================= -->
+
+<section class="home-section">
+
+
+    <h2 class="home-section-title">
+
+        👥 LES
+
+        <span>
+
+            15 ÉQUIPES
+
+        </span>
+
+    </h2>
+
+
+    <div
+        id="teamsGrid"
+        class="teams-grid"
+    >
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     À PROPOS
+========================= -->
+
+<section class="about">
+
+
+    <h2 class="home-section-title">
+
+        ⚽ À PROPOS DE LA
+
+        <span>
+
+            COMPÉTITION
+
+        </span>
+
+    </h2>
+
+
+    <div class="about-box">
+
+
+        <p>
+
+            La <strong>
+            MA'OR Champions League
+            </strong>
+            est une compétition de football
+            réunissant 15 équipes.
+
+        </p>
+
+
+        <p>
+
+            Cette plateforme permet aux
+            supporters de consulter les
+            résultats des matchs, le classement
+            et les informations des équipes.
+
+        </p>
+
+
+        <p>
+
+            Les résultats enregistrés par
+            l'administration sont sauvegardés
+            dans Firebase et peuvent être
+            consultés en ligne.
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                UN RÊVE • UN TERRAIN • UN TROPHÉE
+            </strong>
+
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-    © 2026 MA'OR Champions League
+
+    <h3>
+
+        🏆 MA'OR CHAMPIONS LEAGUE
+
+    </h3>
+
+
+    <p>
+
+        UN RÊVE • UN TERRAIN • UN TROPHÉE
+
+    </p>
+
+
+    <p>
+
+        © 2026 MA'OR Champions League
+
+    </p>
+
 
 </footer>
 
+
+
+<!-- =========================
+     FIREBASE + JAVASCRIPT
+========================= -->
+
+<script type="module">
+
+
+    import {
+
+        db,
+        collection,
+        onSnapshot
+
+    } from "./js/firebase.js";
+
+
+
+    // =========================
+    // LES 15 ÉQUIPES
+    // =========================
+
+    const teams = [
+
+        "MA'OR FC",
+
+        "Ichokan FC",
+
+        "Koussoukpa FC",
+
+        "New King FC",
+
+        "Club Olympique FC",
+
+        "Providence FC",
+
+        "AS Police FC",
+
+        "Ayetedjou FC",
+
+        "Agadjaligbo FC",
+
+        "Club Les Amis FC",
+
+        "Sport Foot FC",
+
+        "Réveil FC",
+
+        "Hlagba Zakpo FC",
+
+        "Zalimey FC",
+
+        "Zougame FC"
+
+    ];
+
+
+
+    // =========================
+    // AFFICHER LES ÉQUIPES
+    // =========================
+
+    const teamsGrid =
+        document.getElementById(
+            "teamsGrid"
+        );
+
+
+    teams.forEach(
+        (team, index) => {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "team-card";
+
+
+            card.innerHTML = `
+
+                <div class="team-number">
+
+                    ${String(index + 1).padStart(2, "0")}
+
+                </div>
+
+
+                <div class="team-ball">
+
+                    ⚽
+
+                </div>
+
+
+                <div class="team-name">
+
+                    ${team}
+
+                </div>
+
+            `;
+
+
+            teamsGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+
+    // =========================
+    // COMPTER LES MATCHS FIRESTORE
+    // =========================
+
+    try {
+
+
+        const matchesRef =
+            collection(
+                db,
+                "matches"
+            );
+
+
+        onSnapshot(
+            matchesRef,
+            (snapshot) => {
+
+
+                const matchCount =
+                    document.getElementById(
+                        "matchCount"
+                    );
+
+
+                matchCount.textContent =
+                    snapshot.size;
+
+            },
+
+
+            (error) => {
+
+
+                console.error(
+                    "Erreur Firestore :",
+                    error
+                );
+
+            }
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(error);
+
+    }
+
+
+</script>
+
+
 </body>
-              </html>
+
+</html>
